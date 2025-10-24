@@ -1,0 +1,39 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 48px;
+    margin-bottom: 32px;
+}
+
+.resultsContainer {
+    background-color: white;
+    padding: 32px 48px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px;
+}
+
+.scoreText {
+    font-size: 20px;
+    color: #6c757d;
+    margin: 0;
+}
+
+.score {
+    font-size: 64px;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+.feedback {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+}
