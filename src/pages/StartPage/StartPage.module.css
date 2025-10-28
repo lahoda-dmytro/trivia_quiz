@@ -16,3 +16,9 @@
     font-size: 20px;
     margin-bottom: 32px;
 }
+
+.questionCount {
+    font-size: 18px;
+    margin-bottom: 32px;
+    color: #6c757d;
+}
