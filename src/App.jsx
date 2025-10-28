@@ -1,40 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
 import StartPage from './pages/StartPage';
 import GamePage from './pages/GamePage';
 import ResultsPage from './pages/ResultsPage';
+import { useQuiz } from './hooks/useQuiz';
 
 function App() {
-    const [currentPage, setCurrentPage] = useState('start');
-
-    const handleStartQuiz = () => {
-        setCurrentPage('game');
-    };
-
-    const handleFinishQuiz = () => {
-        setCurrentPage('results');
-    };
-
-    const handleRestart = () => {
-        setCurrentPage('start');
-    };
-
-    const renderPage = () => {
-        switch (currentPage) {
-            case 'game':
-                return <GamePage onFinishQuiz={handleFinishQuiz} />;
-            case 'results':
-                return <ResultsPage onRestart={handleRestart} />;
-            case 'start':
-            default:
-                return <StartPage onStartQuiz={handleStartQuiz} />;
-        }
-    };
-
+    const {
+        status,
+        currentQuestion,
+        totalQuestions,
+        score,
+        startQuiz,
+        answerQuestion,
+        restartQuiz,
+    } = useQuiz();
     return (
         <div className="App">
-            {renderPage()}
+            {status === 'ready' && (
+                <StartPage onStartQuiz={startQuiz} totalQuestions={totalQuestions} />
+            )}
+
+            {status === 'active' && (
+                <GamePage
+                    questionData={currentQuestion}
+                    totalQuestions={totalQuestions}
+                    onAnswer={answerQuestion}
+                />
+            )}
+
+            {status === 'finished' && (
+                <ResultsPage
+                    score={score}
+                    totalQuestions={totalQuestions}
+                    onRestart={restartQuiz}
+                />
+            )}
         </div>
     );
 }
-
 export default App;

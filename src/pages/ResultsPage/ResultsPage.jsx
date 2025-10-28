@@ -2,9 +2,7 @@ import React from 'react';
 import styles from './ResultsPage.module.css';
 import Button from '../../components/UI/Button';
 
-const ResultsPage = ({onRestart}) => {
-    const correctAnswers = 8;
-    const totalQuestions = 10;
+const ResultsPage = ({score, totalQuestions, onRestart}) => {
 
     return (
         <div className={styles.page}>
@@ -14,10 +12,10 @@ const ResultsPage = ({onRestart}) => {
                     Ваш результат:
                 </p>
                 <p className={styles.score}>
-                    {correctAnswers} / {totalQuestions}
+                    {score} / {totalQuestions}
                 </p>
                 <p className={styles.feedback}>
-                    Чудова робота!
+                    {score > totalQuestions / 2 ? 'Чудова робота!' : 'Варто спробувати ще!'}
                 </p>
             </div>
             <Button onClick={onRestart}>

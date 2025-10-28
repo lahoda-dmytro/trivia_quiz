@@ -1,23 +1,24 @@
 import React from 'react';
 import styles from './QuestionCard.module.css';
 
-const QuestionCard = ({ questionData }) => {
+const QuestionCard = ({ questionData, totalQuestions, onAnswer }) => {
     if (!questionData) {
         return null;
     }
 
-    const { question, answers, currentQuestion, totalQuestions } = questionData;
+    const { question, options, id } = questionData;
+    const currentQuestionNumber = id;
 
     return (
         <div className={styles.card}>
             <p className={styles.counter}>
-                Питання {currentQuestion} / {totalQuestions}
+                Питання {currentQuestionNumber} / {totalQuestions}
             </p>
             <h2 className={styles.questionText}>{question}</h2>
             <div className={styles.answersContainer}>
-                {answers.map((answer, index) => (
-                    <button key={index} className={styles.answerButton}>
-                        {answer}
+                {options.map((option, index) => (
+                    <button key={index} className={styles.answerButton} onClick={() => onAnswer(index)}>
+                        {option}
                     </button>
                 ))}
             </div>
