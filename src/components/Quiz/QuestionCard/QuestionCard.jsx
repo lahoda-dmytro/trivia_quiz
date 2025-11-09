@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './QuestionCard.module.css';
 
-const QuestionCard = ({ questionData, totalQuestions, onAnswer }) => {
+const QuestionCard = ({ questionData, currentIndex, totalQuestions, onAnswer }) => {
     if (!questionData) {
         return null;
     }
 
-    const { question, options, id } = questionData;
-    const currentQuestionNumber = id;
+    const { question, options } = questionData;
+    const currentQuestionNumber = currentIndex + 1;
 
     return (
         <div className={styles.card}>

@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './SettingsForm.module.css';
-import Button from '../UI/Button/';
+import { useSettings } from '../../context/SettingsContext';
 
 const SettingsForm = () => {
-    const { register, handleSubmit } = useForm();
+    const { settings, setSettings } = useSettings();
 
-    const onSubmit = (data) => {
-        console.log('Обрані налаштування:', data);
-    };
+    const { register, watch } = useForm({
+        defaultValues: settings,
+    });
+
+    const watchedValues = watch();
+
+    useEffect(() => {
+        setSettings(watchedValues);
+    }, [watchedValues, setSettings]);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <form className={styles.form}>
             <div className={styles.field}>
                 <label htmlFor="numQuestions">Кількість питань:</label>
                 <select id="numQuestions" {...register('numQuestions')}>
@@ -29,7 +35,6 @@ const SettingsForm = () => {
                     <option value="hard">Складна</option>
                 </select>
             </div>
-
         </form>
     );
 };
