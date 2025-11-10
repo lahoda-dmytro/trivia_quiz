@@ -12,9 +12,12 @@ const SettingsForm = () => {
 
     const watchedValues = watch();
 
+    const numQuestions = watchedValues.numQuestions;
+    const difficulty = watchedValues.difficulty;
+
     useEffect(() => {
-        setSettings(watchedValues);
-    }, [watchedValues, setSettings]);
+        setSettings({ numQuestions, difficulty });
+    }, [numQuestions, difficulty, setSettings]);
 
     return (
         <form className={styles.form}>

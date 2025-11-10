@@ -5,9 +5,15 @@ import QuestionCard from '../../components/Quiz/QuestionCard';
 
 
 const GamePage = ({questionData, totalQuestions, onAnswer, currentIndex }) => {
+
+    if (!questionData) {
+        return null;
+    }
+
     return (
         <div className={styles.page}>
             <QuestionCard
+                key={questionData.id}
                 questionData={questionData}
                 currentIndex={currentIndex}
                 totalQuestions={totalQuestions}
