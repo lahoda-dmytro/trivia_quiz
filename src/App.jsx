@@ -4,6 +4,8 @@ import GamePage from './pages/GamePage';
 //import ResultsPage from './pages/ResultsPage';
 import { useQuiz } from './hooks/useQuiz';
 import { SettingsProvider } from './context/SettingsContext';
+import Modal from './components/UI/Modal/Modal';
+import ResultsModal from './components/Quiz/ResultsModal/ResultsModal';
 
 function AppContent() {
     const {
@@ -31,13 +33,16 @@ function AppContent() {
                 />
             )}
 
-            {/*{status === 'finished' && (*/}
-            {/*    <ResultsPage*/}
-            {/*        score={score}*/}
-            {/*        totalQuestions={totalQuestions}*/}
-            {/*        onRestart={restartQuiz}*/}
-            {/*    />*/}
-            {/*)}*/}
+            {status === 'finished' && (
+                <Modal onClose={restartQuiz}>
+                    <ResultsModal
+                        score={score}
+                        totalQuestions={totalQuestions}
+                        onRestart={restartQuiz}
+                    />
+                </Modal>
+            )}
+
         </div>
     );
 }
