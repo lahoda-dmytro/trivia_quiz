@@ -7,6 +7,7 @@ import { SettingsProvider } from './context/SettingsContext';
 import Modal from './components/UI/Modal/Modal';
 import ResultsModal from './components/Quiz/ResultsModal/ResultsModal';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 function AppContent() {
     const {
@@ -22,10 +23,10 @@ function AppContent() {
 
     const navigate = useNavigate();
 
-    const handleStartQuiz = () => {
-        startQuiz();
-        navigate('/game');
-    };
+    // const handleStartQuiz = () => {
+    //     startQuiz();
+    //     navigate('/game');
+    // };
 
     const handleRestartQuiz = () => {
         restartQuiz();
@@ -37,12 +38,12 @@ function AppContent() {
             <Routes>
                 <Route
                     path="/"
-                    element={<StartPage onStartQuiz={handleStartQuiz} />}
+                    element={<StartPage onStartQuiz={startQuiz} />}
                 />
                 <Route
-                    path="/game"
+                    path="/game/:username"
                     element={
-                        status === 'active' ? (
+                        status === 'active' || status === 'finished' ? (
                             <GamePage
                                 questionData={currentQuestion}
                                 currentIndex={currentIndex}
@@ -54,6 +55,7 @@ function AppContent() {
                         )
                     }
                 />
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
 
             {status === 'finished' && (
