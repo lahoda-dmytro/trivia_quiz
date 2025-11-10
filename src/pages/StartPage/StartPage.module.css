@@ -22,3 +22,22 @@
     margin-bottom: 32px;
     color: #6c757d;
 }
+
+.usernameInput {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+
+.usernameInput input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 0 solid;
+    text-align: center;
+}
