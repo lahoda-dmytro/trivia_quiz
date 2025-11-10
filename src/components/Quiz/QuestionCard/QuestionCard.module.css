@@ -12,6 +12,7 @@
     font-size: 16px;
     color: #6c757d;
     margin-bottom: 16px;
+    min-width: 600px;
 }
 
 .questionText {
@@ -29,7 +30,8 @@
     padding: 12px;
     font-size: 18px;
     background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
+    border: 0 solid ;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     border-radius: 8px;
     cursor: pointer;
     text-align: left;
