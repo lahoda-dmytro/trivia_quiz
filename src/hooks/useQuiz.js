@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { quizQuestions as allQuestions } from '../data/quizQuestions';
-import { useSettings } from '../context/SettingsContext';
+import { useSettingsStore } from '../store/useSettingsStore';
 
 const shuffleArray = (array) => {
     let currentIndex = array.length, randomIndex;
@@ -13,7 +13,7 @@ const shuffleArray = (array) => {
 };
 
 export const useQuiz = () => {
-    const { settings } = useSettings();
+    const { numQuestions, difficulty } = useSettingsStore();
 
     const [status, setStatus] = useState('ready');
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,8 +33,6 @@ export const useQuiz = () => {
         : 0;
 
     const startQuiz = () => {
-        const { numQuestions, difficulty } = settings;
-
         let filteredQuestions;
 
         switch (difficulty) {

@@ -3,7 +3,7 @@ import StartPage from './pages/StartPage';
 import GamePage from './pages/GamePage';
 //import ResultsPage from './pages/ResultsPage';
 import { useQuiz } from './hooks/useQuiz';
-import { SettingsProvider } from './context/SettingsContext';
+//import { SettingsProvider } from './context/SettingsContext';
 import Modal from './components/UI/Modal/Modal';
 import ResultsModal from './components/Quiz/ResultsModal/ResultsModal';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
@@ -72,11 +72,8 @@ function AppContent() {
 }
 
 function App() {
-    return (
-        <SettingsProvider>
-            <AppContent />
-        </SettingsProvider>
-    );
+    return <AppContent />;
+
 }
 
 export default App;
