@@ -14,7 +14,7 @@ const ResultsModal = ({ score, totalQuestions, onRestart }) => {
                 {score > totalQuestions / 2 ? 'Чудова робота!' : 'Варто спробувати ще!'}
             </p>
             <Button onClick={onRestart}>
-                Почати заново
+                На головну
             </Button>
         </div>
     );

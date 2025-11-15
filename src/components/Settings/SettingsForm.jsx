@@ -1,23 +1,25 @@
 import React, {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './SettingsForm.module.css';
-import { useSettings } from '../../context/SettingsContext';
+import { useSettingsStore } from '../../store/useSettingsStore';
 
 const SettingsForm = () => {
-    const { settings, setSettings } = useSettings();
+    const { numQuestions, difficulty, setSettings } = useSettingsStore();
 
     const { register, watch } = useForm({
-        defaultValues: settings,
+        defaultValues: {numQuestions, difficulty},
     });
 
-    const watchedValues = watch();
-
-    const numQuestions = watchedValues.numQuestions;
-    const difficulty = watchedValues.difficulty;
+//    const watchedValues = watch();
 
     useEffect(() => {
-        setSettings({ numQuestions, difficulty });
-    }, [numQuestions, difficulty, setSettings]);
+        const subscription = watch((values) => {
+            setSettings(values);
+        });
+
+        return () => subscription.unsubscribe();
+    }, [watch, setSettings]);
+
 
     return (
         <form className={styles.form}>

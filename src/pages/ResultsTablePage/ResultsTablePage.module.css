@@ -1,0 +1,52 @@
+.page {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.title {
+    font-size: 36px;
+}
+
+.tableContainer {
+    background-color: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 12px 16px;
+}
+
+.table th {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.noResults {
+    font-size: 18px;
+}
+
+.actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}

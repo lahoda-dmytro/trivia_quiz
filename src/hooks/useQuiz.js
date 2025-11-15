@@ -1,6 +1,8 @@
-import { useState } from 'react';
-import { quizQuestions as allQuestions } from '../data/quizQuestions';
-import { useSettings } from '../context/SettingsContext';
+import {useState} from 'react';
+import {quizQuestions as allQuestions} from '../data/quizQuestions';
+import {useSettingsStore} from '../store/useSettingsStore';
+import {useResultsStore} from '../store/useResultsStore';
+
 
 const shuffleArray = (array) => {
     let currentIndex = array.length, randomIndex;
@@ -13,7 +15,8 @@ const shuffleArray = (array) => {
 };
 
 export const useQuiz = () => {
-    const { settings } = useSettings();
+    const {numQuestions, difficulty} = useSettingsStore();
+    const addResult = useResultsStore((state) => state.addResult);
 
     const [status, setStatus] = useState('ready');
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,8 +36,6 @@ export const useQuiz = () => {
         : 0;
 
     const startQuiz = () => {
-        const { numQuestions, difficulty } = settings;
-
         let filteredQuestions;
 
         switch (difficulty) {
@@ -65,6 +66,23 @@ export const useQuiz = () => {
         const isLastQuestion = currentIndex === totalQuestions - 1;
         if (isLastQuestion) {
             setStatus('finished');
+
+            const finalScore = userAnswers.reduce((acc, answer, index) => {
+                if (answer === questions[index].correctAnswer) return acc + 1;
+                return acc;
+            }, selectedIndex === questions[currentIndex].correctAnswer ? 1 : 0);
+
+
+            const username = localStorage.getItem('quizUsername') || 'noname';
+
+            const resultData = {
+                score: finalScore,
+                total: totalQuestions,
+                difficulty: difficulty,
+                date: new Date().toISOString(),
+            };
+
+            addResult(username, resultData);
         } else {
             setCurrentIndex((prevIndex) => prevIndex + 1);
         }
