@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import styles from './StartPage.module.css';
 import Button from '../../components/UI/Button';
 import SettingsForm from '../../components/Settings/SettingsForm';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import StyledLink from '../../components/UI/StyledLink';
 
 const StartPage = ({ onStartQuiz }) => {
 
@@ -28,10 +29,9 @@ const StartPage = ({ onStartQuiz }) => {
         <div className={styles.page}>
             <h1 className={styles.title}>Вікторина (Trivia Quiz)</h1>
             <p className={styles.description}>Завдання — вибрати правильний варіант і набрати якомога більше очок.</p>
-            {/*<p className={styles.questionCount}>Всього питань: {totalQuestions}</p>*/}
-            <Link to={`/results/${username.trim() || 'default'}`}
+            <StyledLink to={`/results/${username.trim() || 'default'}`}
                 className={styles.resultsLink}
-            >Таблиця результатів </Link>
+            >Таблиця результатів </StyledLink>
             <SettingsForm />
             <div className={styles.usernameInput}>
                 <input

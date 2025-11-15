@@ -1,7 +1,9 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useResultsStore } from '../../store/useResultsStore';
 import styles from './ResultsTablePage.module.css';
+import StyledLink from '../../components/UI/StyledLink';
+import Button from '../../components/UI/Button';
 
 const ResultsTablePage = () => {
     const { username } = useParams();
@@ -19,7 +21,9 @@ const ResultsTablePage = () => {
     return (
         <div className={styles.page}>
             <h1 className={styles.title}>Результати гравця: {username}</h1>
-
+            <StyledLink to="/" className={styles.link}>
+                На головну
+            </StyledLink>
             {userResults.length > 0 ? (
                 <>
                     <div className={styles.tableContainer}>
@@ -42,21 +46,16 @@ const ResultsTablePage = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className={styles.actions}>
-                        <button onClick={handleClearHistory} className={styles.clearButton}>
-                            Очистити історію
-                        </button>
-                    </div>
+
                 </>
             ) : (
                 <p className={styles.noResults}>
                     У гравця {username} ще немає результатів.
                 </p>
             )}
-
-            <Link to="/" className={styles.link}>
-                На головну
-            </Link>
+            <Button onClick={handleClearHistory} className={styles.clearButton}>
+                Очистити історію
+            </Button>
         </div>
     );
 };

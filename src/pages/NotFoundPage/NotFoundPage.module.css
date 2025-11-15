@@ -19,13 +19,3 @@
     color: #6c757d;
     margin-bottom: 32px;
 }
-
-.link {
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease-in-out;
-}
