@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import styles from './StartPage.module.css';
 import Button from '../../components/UI/Button';
 import SettingsForm from '../../components/Settings/SettingsForm';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const StartPage = ({ onStartQuiz }) => {
 
@@ -29,6 +29,7 @@ const StartPage = ({ onStartQuiz }) => {
             <h1 className={styles.title}>Вікторина (Trivia Quiz)</h1>
             <p className={styles.description}>Завдання — вибрати правильний варіант і набрати якомога більше очок.</p>
             {/*<p className={styles.questionCount}>Всього питань: {totalQuestions}</p>*/}
+            <Link to="/results" className={styles.resultsLink}>Таблиця результатів </Link>
             <SettingsForm />
             <div className={styles.usernameInput}>
                 <input

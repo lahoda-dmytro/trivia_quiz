@@ -8,6 +8,7 @@ import Modal from './components/UI/Modal/Modal';
 import ResultsModal from './components/Quiz/ResultsModal/ResultsModal';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import ResultsTablePage from './pages/ResultsTablePage/ResultsTablePage';
 
 function AppContent() {
     const {
@@ -55,6 +56,7 @@ function AppContent() {
                         )
                     }
                 />
+                <Route path="/results" element={<ResultsTablePage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
 

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { quizQuestions as allQuestions } from '../data/quizQuestions';
 import { useSettingsStore } from '../store/useSettingsStore';
+import { useResultsStore } from '../store/useResultsStore';
+
 
 const shuffleArray = (array) => {
     let currentIndex = array.length, randomIndex;
@@ -22,6 +24,8 @@ export const useQuiz = () => {
 
     const totalQuestions = questions.length;
     const currentQuestion = questions[currentIndex];
+
+    const addResult = useResultsStore((state) => state.addResult);
 
     const score = status === 'finished'
         ? userAnswers.reduce((acc, answer, index) => {
@@ -63,6 +67,20 @@ export const useQuiz = () => {
         const isLastQuestion = currentIndex === totalQuestions - 1;
         if (isLastQuestion) {
             setStatus('finished');
+
+            const finalScore = userAnswers.reduce((acc, answer, index) => {
+                if (answer === questions[index].correctAnswer) return acc + 1;
+                return acc;
+            }, selectedIndex === questions[currentIndex].correctAnswer ? 1 : 0);
+
+
+            const resultData = {
+                score: finalScore,
+                total: totalQuestions,
+                difficulty: difficulty,
+                date: new Date().toISOString(),
+            };
+            addResult(resultData);
         } else {
             setCurrentIndex((prevIndex) => prevIndex + 1);
         }
