@@ -4,18 +4,33 @@ import { persist } from 'zustand/middleware';
 export const useResultsStore = create(
     persist(
         (set) => ({
-            results: [],
+            resultsByUser: {},
 
-            addResult: (newResult) => {
-                set((state) => ({
-                    results: [...state.results, newResult]
-                }));
+            addResult: (username, newResult) => {
+                set((state) => {
+                    const userResults = state.resultsByUser[username] || [];
+
+                    return {
+                        resultsByUser: {
+                            ...state.resultsByUser,
+                            [username]: [...userResults, newResult],
+                        },
+                    };
+                });
             },
 
-            clearResults: () => set({ results: [] }),
+            clearUserResults: (username) => {
+                set((state) => {
+                    const newResultsByUser = { ...state.resultsByUser };
+                    delete newResultsByUser[username];
+                    return {
+                        resultsByUser: newResultsByUser,
+                    };
+                });
+            },
         }),
         {
-            name: 'quiz-results',
+            name: 'quiz-results-by-user',
         }
     )
 );

@@ -1,16 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useResultsStore } from '../../store/useResultsStore';
 import styles from './ResultsTablePage.module.css';
 
 const ResultsTablePage = () => {
-    const { results, clearResults } = useResultsStore();
+    const { username } = useParams();
+
+    const { resultsByUser, clearUserResults } = useResultsStore();
+
+    const userResults = resultsByUser[username] || [];
+
+    const handleClearHistory = () => {
+        if (window.confirm(`Are you sure you want to delete the history for the player ${username}?`)) {
+            clearUserResults(username);
+        }
+    };
 
     return (
         <div className={styles.page}>
-            <h1 className={styles.title}>Таблиця Результатів</h1>
+            <h1 className={styles.title}>Результати гравця: {username}</h1>
 
-            {results.length > 0 ? (
+            {userResults.length > 0 ? (
                 <>
                     <div className={styles.tableContainer}>
                         <table className={styles.table}>
@@ -22,7 +32,7 @@ const ResultsTablePage = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            {results.map((result, index) => (
+                            {userResults.map((result, index) => (
                                 <tr key={index}>
                                     <td>{new Date(result.date).toLocaleString()}</td>
                                     <td>{result.difficulty}</td>
@@ -33,19 +43,19 @@ const ResultsTablePage = () => {
                         </table>
                     </div>
                     <div className={styles.actions}>
-                        <button onClick={clearResults} className={styles.clearButton}>
+                        <button onClick={handleClearHistory} className={styles.clearButton}>
                             Очистити історію
                         </button>
                     </div>
                 </>
             ) : (
                 <p className={styles.noResults}>
-                    Ви ще не зіграли жодної гри. Час це виправити!
+                    У гравця {username} ще немає результатів.
                 </p>
             )}
 
             <Link to="/" className={styles.link}>
-                Повернутися на головну
+                На головну
             </Link>
         </div>
     );

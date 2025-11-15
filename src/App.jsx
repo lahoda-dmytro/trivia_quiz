@@ -56,7 +56,7 @@ function AppContent() {
                         )
                     }
                 />
-                <Route path="/results" element={<ResultsTablePage />} />
+                <Route path="/results/:username" element={<ResultsTablePage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
 

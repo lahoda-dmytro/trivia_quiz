@@ -29,7 +29,9 @@ const StartPage = ({ onStartQuiz }) => {
             <h1 className={styles.title}>Вікторина (Trivia Quiz)</h1>
             <p className={styles.description}>Завдання — вибрати правильний варіант і набрати якомога більше очок.</p>
             {/*<p className={styles.questionCount}>Всього питань: {totalQuestions}</p>*/}
-            <Link to="/results" className={styles.resultsLink}>Таблиця результатів </Link>
+            <Link to={`/results/${username.trim() || 'default'}`}
+                className={styles.resultsLink}
+            >Таблиця результатів </Link>
             <SettingsForm />
             <div className={styles.usernameInput}>
                 <input
