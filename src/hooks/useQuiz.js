@@ -1,7 +1,7 @@
-import {useState} from 'react';
-import {quizQuestions as allQuestions} from '../data/quizQuestions';
-import {useSettingsStore} from '../store/useSettingsStore';
-import {useResultsStore} from '../store/useResultsStore';
+import { useState } from 'react';
+import { quizQuestions as allQuestions } from '../data/quizQuestions';
+import { useSettingsStore } from '../store/useSettingsStore';
+import { useResultsStore } from '../store/useResultsStore';
 
 
 const shuffleArray = (array) => {
@@ -14,8 +14,22 @@ const shuffleArray = (array) => {
     return array;
 };
 
+/**
+ * Custom hook to manage the quiz state and logic.
+ * Handles question fetching, scoring, user answers, and quiz progression.
+ *
+ * @returns {Object} The quiz state and controller functions
+ * @property {string} status - Current status of the quiz ('ready', 'active', 'finished')
+ * @property {Object} currentQuestion - The currently displayed question object
+ * @property {number} totalQuestions - Total number of questions in the current session
+ * @property {number} score - Current calculated score (only available when finished)
+ * @property {number} currentIndex - Index of the current question
+ * @property {function(): void} startQuiz - Function to initialize and start the quiz based on settings
+ * @property {function(number): void} answerQuestion - Function to handle user answer submission
+ * @property {function(): void} restartQuiz - Function to reset the quiz to 'ready' state
+ */
 export const useQuiz = () => {
-    const {numQuestions, difficulty} = useSettingsStore();
+    const { numQuestions, difficulty } = useSettingsStore();
     const addResult = useResultsStore((state) => state.addResult);
 
     const [status, setStatus] = useState('ready');

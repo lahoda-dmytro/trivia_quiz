@@ -1,15 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './StartPage.module.css';
 import Button from '../../components/UI/Button';
 import SettingsForm from '../../components/Settings/SettingsForm';
 import { useNavigate } from 'react-router-dom';
 import StyledLink from '../../components/UI/StyledLink';
+import SimpleNotification from '../../components/SimpleNotification/SimpleNotification';
 
 const StartPage = ({ onStartQuiz }) => {
 
     const [username, setUsername] = useState(
         () => localStorage.getItem('quizUsername') || ''
     );
+    const [notification, setNotification] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -18,7 +20,7 @@ const StartPage = ({ onStartQuiz }) => {
 
     const handleStart = () => {
         if (!username.trim()) {
-            alert("Введіть ім'я перед початком гри");
+            setNotification("Введіть ім'я перед початком гри");
             return;
         }
         onStartQuiz();
@@ -44,6 +46,11 @@ const StartPage = ({ onStartQuiz }) => {
             <Button onClick={handleStart}>
                 Почати вікторину
             </Button>
+
+            <SimpleNotification
+                message={notification}
+                onClose={() => setNotification('')}
+            />
         </div>
     );
 };

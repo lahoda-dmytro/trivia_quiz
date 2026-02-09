@@ -1,14 +1,14 @@
 import React from 'react';
 import StartPage from './pages/StartPage';
 import GamePage from './pages/GamePage';
-//import ResultsPage from './pages/ResultsPage';
 import { useQuiz } from './hooks/useQuiz';
-//import { SettingsProvider } from './context/SettingsContext';
 import Modal from './components/UI/Modal/Modal';
 import ResultsModal from './components/Quiz/ResultsModal/ResultsModal';
+import CookieBanner from './components/CookieBanner/CookieBanner';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ResultsTablePage from './pages/ResultsTablePage/ResultsTablePage';
+import PrivacyPage from './pages/PrivacyPage/PrivacyPage';
 
 function AppContent() {
     const {
@@ -23,11 +23,6 @@ function AppContent() {
     } = useQuiz();
 
     const navigate = useNavigate();
-
-    // const handleStartQuiz = () => {
-    //     startQuiz();
-    //     navigate('/game');
-    // };
 
     const handleRestartQuiz = () => {
         restartQuiz();
@@ -57,6 +52,7 @@ function AppContent() {
                     }
                 />
                 <Route path="/results/:username" element={<ResultsTablePage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
 
@@ -74,8 +70,12 @@ function AppContent() {
 }
 
 function App() {
-    return <AppContent />;
-
+    return (
+        <>
+            <AppContent />
+            <CookieBanner />
+        </>
+    );
 }
 
 export default App;

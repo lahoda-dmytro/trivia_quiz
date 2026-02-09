@@ -1,0 +1,103 @@
+.cookie-consent-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+    background: transparent;
+}
+
+.cookie-consent-container>div {
+    display: block !important;
+    max-width: 900px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px 48px;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12), 0 8px 48px rgba(0, 0, 0, 0.08);
+}
+
+.cookie-banner-card {
+    margin-bottom: 24px;
+}
+
+.cookie-banner-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cookie-banner-title {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2d3748;
+    letter-spacing: 0.3px;
+}
+
+.cookie-banner-text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #4a5568;
+}
+
+.cookie-consent-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.cookie-accept-button {
+    background: #000000 !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    padding: 14px 32px !important;
+    border-radius: 8px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.cookie-decline-button {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    padding: 14px 32px !important;
+    border-radius: 8px !important;
+    border: 2px solid #000000 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+@media (max-width: 768px) {
+    .cookie-consent-container>div {
+        padding: 32px 24px;
+    }
+
+    .cookie-banner-title {
+        font-size: 18px;
+    }
+
+    .cookie-banner-text {
+        font-size: 14px;
+    }
+
+    .cookie-banner-card {
+        margin-bottom: 20px;
+    }
+
+    .cookie-consent-buttons {
+        flex-direction: column;
+    }
+
+    .cookie-accept-button,
+    .cookie-decline-button {
+        width: 100% !important;
+    }
+}

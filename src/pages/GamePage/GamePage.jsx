@@ -4,7 +4,7 @@ import QuestionCard from '../../components/Quiz/QuestionCard';
 // import Button from '../../components/UI/Button';
 // import { useParams } from 'react-router-dom';
 
-const GamePage = ({questionData, totalQuestions, onAnswer, currentIndex }) => {
+const GamePage = ({ questionData, totalQuestions, onAnswer, currentIndex }) => {
 
     // const { username } = useParams();
 

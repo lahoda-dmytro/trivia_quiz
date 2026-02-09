@@ -9,6 +9,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "react": "^19.2.0",
+    "react-cookie-consent": "^10.0.1",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.66.0",
     "react-router-dom": "^7.9.5",
@@ -22,12 +23,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "docs": "jsdoc -c jsdoc.json",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ]
   },
   "browserslist": {
@@ -43,6 +48,16 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "@storybook/addon-a11y": "^10.2.8",
+    "@storybook/addon-docs": "^10.2.8",
+    "@storybook/addon-onboarding": "^10.2.8",
+    "@storybook/preset-create-react-app": "^10.2.8",
+    "@storybook/react-webpack5": "^10.2.8",
+    "eslint-plugin-storybook": "^10.2.8",
+    "gh-pages": "^6.3.0",
+    "jsdoc": "^4.0.5",
+    "prop-types": "^15.8.1",
+    "storybook": "^10.2.8",
+    "webpack": "^5.105.0"
   }
 }
