@@ -26,7 +26,8 @@
     "deploy": "gh-pages -d build",
     "docs": "jsdoc -c jsdoc.json",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "deploy:docs": "node scripts/deploy-docs.js"
   },
   "eslintConfig": {
     "extends": [

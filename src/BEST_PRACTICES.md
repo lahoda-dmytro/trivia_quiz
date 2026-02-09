@@ -1,37 +1,37 @@
-# Найкращі практики (Best Practices)
+# React Best Practices
 
-## 1. Розділення відповідальності за допомогою Custom Hooks
-Я реалізував розділення логіки та представлення. Всю ігрову механіку винесено у кастомний хук `useQuiz`. Цей хук працює як контролер, який керує станом гри, таймерами та нарахуванням балів, надаючи компоненту `GamePage` лише готовий інтерфейс для відображення. Це дозволяє компонентам залишатись чистими та сфокусованими лише на рендерингу.
+## 1. Separation of Concerns with Custom Hooks
+I implemented separation of logic and presentation. All game mechanics are extracted into a custom hook `useQuiz`. This hook acts as a controller that manages game state, timers, and scoring, providing the `GamePage` component with only a ready-made interface for display. This allows components to remain clean and focused solely on rendering.
 
-* **Логіка гри (Хук):**
-  [useQuiz.js](src/hooks/useQuiz.js)
-* **Використання в UI:**
-  [GamePage.jsx](src/pages/GamePage/GamePage.jsx)
+* **Game Logic (Hook):**
+  [useQuiz.js](hooks/useQuiz.js)
+* **UI Usage:**
+  [GamePage.jsx](pages/GamePage/GamePage.jsx)
 
-## 2. Оптимізація стану за допомогою Derived State (Похідного стану)
-Я уникнув надлишкового використання `useState` для даних, які можна обчислити математично на основі існуючих пропсів або іншого стану. Замість створення зайвих змінних, які потрібно синхронізувати, я використовую обчислювані значення "на льоту". Це гарантує, що дані завжди актуальні і запобігає помилкам десинхронізації.
+## 2. State Optimization with Derived State
+I avoided redundant use of `useState` for data that can be calculated mathematically based on existing props or other state. Instead of creating extra variables that need to be synchronized, I use computed values "on the fly". This ensures data is always up-to-date and prevents desynchronization errors.
 
-* **Приклад обчислення в хуку:**
-  [useQuiz.js](src/hooks/useQuiz.js)
+* **Calculation example in hook:**
+  [useQuiz.js](hooks/useQuiz.js)
 
-## 3. Використання React Portals для ізоляції UI
-Для відображення модальних вікон я використав паттерн Portal. Це дозволяє рендерити модальне вікно поза ієрархією батьківського компонента (в окремому вузлі DOM), що вирішує типові проблеми з `z-index` та `overflow: hidden` у батьківських контейнерах.
+## 3. Using React Portals for UI Isolation
+For displaying modal windows, I used the Portal pattern. This allows rendering the modal window outside the parent component hierarchy (in a separate DOM node), which solves typical problems with `z-index` and `overflow: hidden` in parent containers.
 
-* **Реалізація компонента Portal:**
-  [Modal.jsx](src/components/UI/Modal/Modal.jsx)
-* **Використання в додатку:**
-  [App.jsx](src/App.jsx)
+* **Portal component implementation:**
+  [Modal.jsx](components/UI/Modal/Modal.jsx)
+* **Usage in app:**
+  [App.jsx](App.jsx)
 
-## 4. Модульний Global State Management за допомогою Zustand
-Я відмовився від громіздкого Redux на користь легковагого Zustand. Я розділив стор на логічні модулі: `useSettingsStore` для конфігурації гри та `useResultsStore` для історії результатів. Також я використав middleware `persist` для автоматичного збереження даних у LocalStorage, що покращує UX при перезавантаженні сторінки.
+## 4. Modular Global State Management with Zustand
+I abandoned bulky Redux in favor of lightweight Zustand. I split the store into logical modules: `useSettingsStore` for game configuration and `useResultsStore` for results history. I also used the `persist` middleware for automatic data saving to LocalStorage, which improves UX when reloading the page.
 
-* **Стор налаштувань:**
-  [useSettingsStore.js](src/store/useSettingsStore.js)
-* **Стор результатів:**
-  [useResultsStore.js](src/store/useResultsStore.js)
+* **Settings store:**
+  [useSettingsStore.js](store/useSettingsStore.js)
+* **Results store:**
+  [useResultsStore.js](store/useResultsStore.js)
 
-## 5. Використання захищених маршрутів
-Щоб запобігти доступу користувачів до ігрового процесу без попереднього введення імені та налаштувань, я реалізував механізм захищених маршрутів (Protected Routes). Якщо статус гри не є активним, користувача автоматично перенаправляє на головну сторінку за допомогою компонента `Navigate`.
+## 5. Using Protected Routes
+To prevent users from accessing the game process without first entering their name and settings, I implemented a protected routes mechanism. If the game status is not active, the user is automatically redirected to the home page using the `Navigate` component.
 
-* **Реалізація захисту в роутингу:**
-  [App.jsx](src/App.jsx)
+* **Route protection implementation:**
+  [App.jsx](App.jsx)

@@ -1,140 +1,74 @@
-# Trivia Quiz Application
+# Trivia Quiz
 
-An educational React-based trivia quiz application with customizable difficulty levels and question counts.
+A simple yet engaging trivia quiz application built with React. This project was created as an educational exercise to demonstrate modern React patterns, state management, and GDPR-compliant data handling.
 
-## Features
+## What is this?
 
-- Multiple difficulty levels: Easy, Medium, Hard
-- Customizable number of questions: 5, 10, or 15
-- Score tracking and results history
-- LocalStorage persistence for settings and results
-- GDPR-compliant cookie consent banner
-- Responsive design
-- No server-side data collection
+This is a browser-based quiz game where you answer trivia questions and track your scores over time. The application runs entirely in your browser with no server-side processing. All your data stays on your device using LocalStorage, and you have full control over what gets saved through a GDPR-compliant cookie consent system.
 
-## Tech Stack
+## Getting started
 
-- React 19.2.0
-- React Router DOM 7.9.5
-- Zustand 5.0.8 for state management
-- React Hook Form 7.66.0
-- React Cookie Consent for GDPR compliance
-- LocalStorage for data persistence
-
-## Getting Started
-
-### Installation
+To run this project locally, you'll need Node.js installed on your machine. Clone the repository and install the dependencies:
 
 ```bash
 npm install
 ```
 
-### Development
+Once everything is installed, start the development server:
 
 ```bash
 npm start
 ```
 
-Runs the app in development mode at http://localhost:3000.
+The application will open in your browser at [http://localhost:3000](http://localhost:3000). You can now play the quiz, adjust settings, and see how everything works.
 
-### Build
+## How it works
 
-```bash
-npm run build
-```
+When you first open the application, you'll see a cookie consent banner. This isn't just for show - it actually controls whether your quiz settings and results get saved to LocalStorage. If you accept, your preferences and scores persist between sessions. If you decline, you can still use the app, but nothing gets saved.
 
-Creates an optimized production build in the `build` folder.
+The quiz itself is straightforward. Enter your name, choose your difficulty level and number of questions, then start playing. Each question is timed, and you'll see your results at the end. All your past scores are saved (if you accepted cookies) and can be viewed in the results table.
 
-### Testing
 
-```bash
-npm test
-```
+## Documentation
 
-Runs the test suite in interactive watch mode.
-
-### Deployment
-
-```bash
-npm run deploy
-```
-
-Deploys the application to GitHub Pages.
-
-### Storybook
+This project includes comprehensive documentation in two formats. You can explore the component library interactively using Storybook:
 
 ```bash
 npm run storybook
 ```
 
-Runs Storybook for component development and documentation at http://localhost:6006.
+This opens Storybook at [http://localhost:6006](http://localhost:6006) where you can see all the UI components with their different states and properties. The [Button](https://lahoda-dmytro.github.io/trivia_quiz/docs/storybook/index.html?path=/docs/forms-settingsform--docs) and SettingsForm components are fully documented with interactive controls.
+
+For API documentation, generate the JSDoc files:
 
 ```bash
-npm run build-storybook
+npm run docs
 ```
 
-Builds Storybook for production deployment.
+Then open `docs/index.html` in your browser to browse the [API documentation](https://lahoda-dmytro.github.io/trivia_quiz/docs/api/index.html). This covers all the hooks, stores, and utility functions used throughout the application.
 
-## Project Structure
+You can also visit the [documentation hub](https://lahoda-dmytro.github.io/trivia_quiz/docs/) which provides links to both Storybook and JSDoc in one place.
 
-```
-src/
-├── components/     - Reusable UI components
-├── pages/          - Page-level components
-├── hooks/          - Custom React hooks
-├── store/          - Zustand state management stores
-├── data/           - Quiz questions data
-├── context/        - React context providers
-└── assets/         - Static assets
+## Legal and privacy
 
-## Storybook
+This project is released under the [MIT License](./LICENSE), which means you're free to use, modify, and distribute it as you see fit. A full report of all third-party dependencies and their licenses is available in [LICENSE_REPORT.txt](./LICENSE_REPORT.txt).
 
-Component library documentation is available via Storybook:
+Privacy is taken seriously here. The [Privacy Policy](./PRIVACY.md) explains exactly what data is collected (spoiler: not much) and how it's handled. The cookie consent system ensures compliance with GDPR regulations, giving users explicit control over data persistence.
 
-**Documented Components:**
-- `Button` - Basic UI button component with configurable properties
-- `SettingsForm` - Complex form component for quiz settings
+## Technical details
 
-Each component includes:
-- Interactive controls for all properties
-- Multiple story variations (2-4 per component)
-- Auto-generated documentation
-- Accessibility testing
+The application is built with React 19 and uses Zustand for state management. Form handling is done through React Hook Form, and routing uses React Router DOM. The entire codebase follows modern React patterns including custom hooks, container/presentational component separation, and proper state management practices.
 
-Run `npm run storybook` to explore components.
-```
+If you're interested in the architectural decisions and best practices used in this project, check out the [BEST_PRACTICES.md](src/BEST_PRACTICES.md) file in the source directory.
 
-## Key Components
+## Live demo
 
-### State Management
-
-- `useSettingsStore` - Manages quiz settings (difficulty, number of questions)
-- `useResultsStore` - Stores quiz results and score history
-
-### Custom Hooks
-
-- `useQuiz` - Main quiz logic including question shuffling, scoring, and state management
-
-## Data Storage
-
-All data is stored locally using:
-- LocalStorage for user preferences
-- Zustand persist middleware for state persistence
-
-No data is transmitted to external servers.
-
-## License
-
-MIT License - See LICENSE file for details.
-
-## Privacy
-
-See PRIVACY.md for information about data handling and GDPR compliance.
+You can try the application live at [https://lahoda-dmytro.github.io/trivia_quiz/](https://lahoda-dmytro.github.io/trivia_quiz/). The documentation is also available online, so you don't need to build it locally if you just want to explore how things work.
 
 ## Contributing
 
-This is an educational project. Contributions should maintain code quality and follow React best practices.
+This is primarily an educational project, but if you find bugs or have suggestions for improvements, feel free to open an issue or submit a pull request. The codebase is intentionally kept simple and readable to serve as a learning resource.
 
-## Documentation
+## Author
 
-For detailed code documentation, see the docs/ folder or refer to inline JSDoc comments in the source code.
+Created by Lahoda Dmytro in 2026 as a demonstration of modern React development practices and GDPR-compliant web applications.
