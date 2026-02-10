@@ -28,6 +28,16 @@ When you first open the application, you'll see a cookie consent banner. This is
 
 The quiz itself is straightforward. Enter your name, choose your difficulty level and number of questions, then start playing. Each question is timed, and you'll see your results at the end. All your past scores are saved (if you accepted cookies) and can be viewed in the results table.
 
+### Managing Your Privacy
+
+You have full control over your data at any time. Click **Cookie Settings** in the header to:
+- View your current consent status
+- Change your cookie preferences
+- Clear all stored data with one click
+- Learn exactly what information is stored locally
+
+All data stays on your device - nothing is ever sent to external servers.
+
 
 ## Documentation
 
@@ -65,9 +75,6 @@ If you're interested in the architectural decisions and best practices used in t
 
 You can try the application live at [https://lahoda-dmytro.github.io/trivia_quiz/](https://lahoda-dmytro.github.io/trivia_quiz/). The documentation is also available online, so you don't need to build it locally if you just want to explore how things work.
 
-## Contributing
-
-This is primarily an educational project, but if you find bugs or have suggestions for improvements, feel free to open an issue or submit a pull request. The codebase is intentionally kept simple and readable to serve as a learning resource.
 
 ## Author
 

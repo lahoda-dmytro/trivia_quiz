@@ -43,7 +43,7 @@ const CookieBanner = () => {
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
             }}
-            expires={365}
+            expires={90}
             enableDeclineButton
             onAccept={() => {
                 console.log('Cookie consent accepted');
@@ -56,9 +56,16 @@ const CookieBanner = () => {
             <div className="cookie-banner-content">
                 <h3 className="cookie-banner-title">We value your privacy</h3>
                 <p className="cookie-banner-text">
-                    We use LocalStorage to enhance your browsing experience and save your quiz settings locally.
-                    No data is transmitted to external servers or third parties. By clicking "Accept All", you consent
-                    to our use of LocalStorage.
+                    We use LocalStorage to save your quiz settings and results locally on your device.
+                    No data is transmitted to external servers or third parties.{' '}
+                    <a
+                        href="https://github.com/lahoda-dmytro/trivia_quiz/blob/main/PRIVACY.md"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: '#2d3748', textDecoration: 'underline', fontWeight: '600' }}
+                    >
+                        Learn more
+                    </a>
                 </p>
             </div>
         </CookieConsent>

@@ -5,10 +5,11 @@ import { useQuiz } from './hooks/useQuiz';
 import Modal from './components/UI/Modal/Modal';
 import ResultsModal from './components/Quiz/ResultsModal/ResultsModal';
 import CookieBanner from './components/CookieBanner/CookieBanner';
+import Header from './components/Header/Header';
+import CookieSettings from './components/CookieSettings/CookieSettings';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ResultsTablePage from './pages/ResultsTablePage/ResultsTablePage';
-import PrivacyPage from './pages/PrivacyPage/PrivacyPage';
 
 function AppContent() {
     const {
@@ -31,6 +32,7 @@ function AppContent() {
 
     return (
         <div className="App">
+            <Header />
             <Routes>
                 <Route
                     path="/"
@@ -52,7 +54,7 @@ function AppContent() {
                     }
                 />
                 <Route path="/results/:username" element={<ResultsTablePage />} />
-                <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="/cookie-settings" element={<CookieSettings />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
 

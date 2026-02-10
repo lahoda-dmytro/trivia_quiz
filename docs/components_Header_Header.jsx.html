@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/UI/Button/Button.jsx</title>
+    <title>JSDoc: Source: components/Header/Header.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/UI/Button/Button.jsx</h1>
+    <h1 class="page-title">Source: components/Header/Header.jsx</h1>
 
     
 
@@ -27,30 +27,51 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import styles from './Button.module.css';
+import { Link } from 'react-router-dom';
+import './Header.css';
 
 /**
- * Reusable Button component for user interactions.
+ * Transparent header component with navigation links.
  * 
+ * Displays a fixed header at the top of the page with:
+ * - Logo/home link
+ * - Documentation link (external)
+ * - Cookie Settings link (internal route)
+ * 
+ * Features glassmorphism effect with backdrop blur and semi-transparent background.
+ * 
+ * @component
  * @example
  * ```jsx
- * &lt;Button onClick={() => console.log('clicked')}>Click Me&lt;/Button>
- * &lt;Button disabled>Disabled Button&lt;/Button>
+ * &lt;Header />
  * ```
  */
-const Button = ({ children, onClick, disabled }) => {
+const Header = () => {
     return (
-        &lt;button
-            className={styles.button}
-            onClick={onClick}
-            disabled={disabled}
-        >
-            {children}
-        &lt;/button>
+        &lt;header className="app-header">
+            &lt;div className="header-container">
+                &lt;Link to="/" className="header-logo">
+                    Trivia Quiz
+                &lt;/Link>
+                &lt;nav className="header-nav">
+                    &lt;a
+                        href="https://lahoda-dmytro.github.io/trivia_quiz/docs/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="header-link"
+                    >
+                        Docs
+                    &lt;/a>
+                    &lt;Link to="/cookie-settings" className="header-link">
+                        Cookie Settings
+                    &lt;/Link>
+                &lt;/nav>
+            &lt;/div>
+        &lt;/header>
     );
 };
 
-export default Button;
+export default Header;
 </code></pre>
         </article>
     </section>

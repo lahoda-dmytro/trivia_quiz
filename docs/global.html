@@ -717,7 +717,7 @@ Handles question fetching, scoring, user answers, and quiz progression.</p>
     
 
     
-    <h4 class="name" id="Button"><span class="type-signature"></span>Button<span class="signature">(props)</span><span class="type-signature"> &rarr; {JSX.Element}</span></h4>
+    <h4 class="name" id="Button"><span class="type-signature"></span>Button<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -734,194 +734,6 @@ Handles question fetching, scoring, user answers, and quiz progression.</p>
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>props</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The component props</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>children</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">React.ReactNode</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The content to be displayed inside the button</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>onClick</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>The function to be called when the button is clicked</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>disabled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    false
-                
-                </td>
-            
-
-            <td class="description last"><p>Whether the button should be disabled</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -957,7 +769,7 @@ Handles question fetching, scoring, user answers, and quiz progression.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_UI_Button_Button.jsx.html">components/UI/Button/Button.jsx</a>, <a href="components_UI_Button_Button.jsx.html#line17">line 17</a>
+        <a href="components_UI_Button_Button.jsx.html">components/UI/Button/Button.jsx</a>, <a href="components_UI_Button_Button.jsx.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -982,35 +794,13 @@ Handles question fetching, scoring, user answers, and quiz progression.</p>
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>The Button component</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">JSX.Element</span>
-
-
-    </dd>
-</dl>
-
-    
 
 
 
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>&lt;Button onClick={() => console.log('clicked')}>Click Me&lt;/Button></code></pre>
+    <pre class="prettyprint"><code>```jsx&lt;Button onClick={() => console.log('clicked')}>Click Me&lt;/Button>&lt;Button disabled>Disabled Button&lt;/Button>```</code></pre>
 
 
 
@@ -1100,6 +890,214 @@ Displays information about LocalStorage usage for educational purposes</p>
 
 
 
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="CookieSettings"><span class="type-signature"></span>CookieSettings<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Cookie Settings component for managing user consent preferences.</p>
+<p>Allows users to:</p>
+<ul>
+<li>View current cookie consent status (Accepted/Rejected/Not Set)</li>
+<li>Accept cookies to enable LocalStorage</li>
+<li>Reject cookies and clear all stored data</li>
+<li>View information about what data is stored</li>
+<li>Access Privacy Policy</li>
+</ul>
+<p>Features:</p>
+<ul>
+<li>Visual status indicators with color coding</li>
+<li>Confirmation dialog before data deletion</li>
+<li>Automatic page reload after consent changes</li>
+<li>Links to Privacy Policy documentation</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_CookieSettings_CookieSettings.jsx.html">components/CookieSettings/CookieSettings.jsx</a>, <a href="components_CookieSettings_CookieSettings.jsx.html#line27">line 27</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>```jsx&lt;Route path="/cookie-settings" element={&lt;CookieSettings />} />```</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Header"><span class="type-signature"></span>Header<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Transparent header component with navigation links.</p>
+<p>Displays a fixed header at the top of the page with:</p>
+<ul>
+<li>Logo/home link</li>
+<li>Documentation link (external)</li>
+<li>Cookie Settings link (internal route)</li>
+</ul>
+<p>Features glassmorphism effect with backdrop blur and semi-transparent background.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Header_Header.jsx.html">components/Header/Header.jsx</a>, <a href="components_Header_Header.jsx.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>```jsx&lt;Header />```</code></pre>
 
 
 
@@ -2010,13 +2008,13 @@ Persists data to localStorage using the 'quiz-settings' key.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Button">Button</a></li><li><a href="global.html#CookieBanner">CookieBanner</a></li><li><a href="global.html#SettingsForm">SettingsForm</a></li><li><a href="global.html#SettingsFormView">SettingsFormView</a></li><li><a href="global.html#addResult">addResult</a></li><li><a href="global.html#clearUserResults">clearUserResults</a></li><li><a href="global.html#consentAwareStorage">consentAwareStorage</a></li><li><a href="global.html#setSettings">setSettings</a></li><li><a href="global.html#useQuiz">useQuiz</a></li><li><a href="global.html#useResultsStore">useResultsStore</a></li><li><a href="global.html#useSettingsStore">useSettingsStore</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Button">Button</a></li><li><a href="global.html#CookieBanner">CookieBanner</a></li><li><a href="global.html#CookieSettings">CookieSettings</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#SettingsForm">SettingsForm</a></li><li><a href="global.html#SettingsFormView">SettingsFormView</a></li><li><a href="global.html#addResult">addResult</a></li><li><a href="global.html#clearUserResults">clearUserResults</a></li><li><a href="global.html#consentAwareStorage">consentAwareStorage</a></li><li><a href="global.html#setSettings">setSettings</a></li><li><a href="global.html#useQuiz">useQuiz</a></li><li><a href="global.html#useResultsStore">useResultsStore</a></li><li><a href="global.html#useSettingsStore">useSettingsStore</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 23:02:05 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Feb 10 2026 11:41:30 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
