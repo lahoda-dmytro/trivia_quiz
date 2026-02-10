@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/CookieSettings/CookieSettings.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/CookieSettings/CookieSettings.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
+import { getCookieConsentValue } from 'react-cookie-consent';
+import './CookieSettings.css';
+
+/**
+ * Cookie Settings component for managing user consent preferences.
+ * 
+ * Allows users to:
+ * - View current cookie consent status (Accepted/Rejected/Not Set)
+ * - Accept cookies to enable LocalStorage
+ * - Reject cookies and clear all stored data
+ * - View information about what data is stored
+ * - Access Privacy Policy
+ * 
+ * Features:
+ * - Visual status indicators with color coding
+ * - Confirmation dialog before data deletion
+ * - Automatic page reload after consent changes
+ * - Links to Privacy Policy documentation
+ * 
+ * @component
+ * @example
+ * ```jsx
+ * &lt;Route path="/cookie-settings" element={&lt;CookieSettings />} />
+ * ```
+ */
+const CookieSettings = () => {
+    const [consentStatus, setConsentStatus] = useState('unknown');
+    const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+
+    useEffect(() => {
+        checkConsentStatus();
+    }, []);
+
+    const checkConsentStatus = () => {
+        const consent = getCookieConsentValue('quizCookieConsent');
+        if (consent === 'true') {
+            setConsentStatus('accepted');
+        } else if (consent === 'false') {
+            setConsentStatus('rejected');
+        } else {
+            setConsentStatus('not-set');
+        }
+    };
+
+    const handleAccept = () => {
+        // Set cookie consent to true
+        document.cookie = 'quizCookieConsent=true; max-age=' + (90 * 24 * 60 * 60) + '; path=/';
+        setConsentStatus('accepted');
+        window.location.reload(); // Reload to apply changes
+    };
+
+    const handleReject = () => {
+        setShowConfirmDialog(true);
+    };
+
+    const confirmReject = () => {
+        // Clear all localStorage
+        localStorage.clear();
+        // Set cookie consent to false
+        document.cookie = 'quizCookieConsent=false; max-age=' + (90 * 24 * 60 * 60) + '; path=/';
+        setConsentStatus('rejected');
+        setShowConfirmDialog(false);
+        window.location.reload(); // Reload to apply changes
+    };
+
+    const cancelReject = () => {
+        setShowConfirmDialog(false);
+    };
+
+    return (
+        &lt;div className="cookie-settings">
+            &lt;div className="cookie-settings-container">
+                &lt;h2>Cookie Settings&lt;/h2>
+
+                &lt;div className="cookie-settings-status">
+                    &lt;h3>Current Status&lt;/h3>
+                    &lt;div className={`status-indicator status-${consentStatus}`}>
+                        {consentStatus === 'accepted' &amp;&amp; &lt;span>Cookies Accepted&lt;/span>}
+                        {consentStatus === 'rejected' &amp;&amp; &lt;span>Cookies Rejected&lt;/span>}
+                        {consentStatus === 'not-set' &amp;&amp; &lt;span>Not Set&lt;/span>}
+                    &lt;/div>
+                &lt;/div>
+
+                &lt;div className="cookie-settings-info">
+                    &lt;h3>What We Store&lt;/h3>
+                    &lt;p>When you accept cookies, we store the following data locally on your device:&lt;/p>
+                    &lt;ul>
+                        &lt;li>&lt;strong>Quiz Settings:&lt;/strong> Your preferred number of questions and difficulty level&lt;/li>
+                        &lt;li>&lt;strong>Quiz Results:&lt;/strong> Your username, scores, and completion times&lt;/li>
+                        &lt;li>&lt;strong>Cookie Consent:&lt;/strong> Your preference (expires after 90 days)&lt;/li>
+                    &lt;/ul>
+                    &lt;p className="info-note">
+                        All data is stored in your browser's LocalStorage and never transmitted to external servers.
+                    &lt;/p>
+                &lt;/div>
+
+                &lt;div className="cookie-settings-actions">
+                    &lt;button
+                        className="btn-accept"
+                        onClick={handleAccept}
+                        disabled={consentStatus === 'accepted'}
+                    >
+                        {consentStatus === 'accepted' ? 'Already Accepted' : 'Accept Cookies'}
+                    &lt;/button>
+                    &lt;button
+                        className="btn-reject"
+                        onClick={handleReject}
+                        disabled={consentStatus === 'rejected'}
+                    >
+                        {consentStatus === 'rejected' ? 'Already Rejected' : 'Reject &amp; Clear Data'}
+                    &lt;/button>
+                &lt;/div>
+
+                &lt;div className="cookie-settings-links">
+                    &lt;a
+                        href="https://github.com/lahoda-dmytro/trivia_quiz/blob/main/PRIVACY.md"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Read Privacy Policy →
+                    &lt;/a>
+                &lt;/div>
+            &lt;/div>
+
+            {showConfirmDialog &amp;&amp; (
+                &lt;div className="confirm-dialog-overlay" onClick={cancelReject}>
+                    &lt;div className="confirm-dialog" onClick={(e) => e.stopPropagation()}>
+                        &lt;h3>Confirm Action&lt;/h3>
+                        &lt;p>
+                            This will reject cookies and &lt;strong>permanently delete all your quiz data&lt;/strong> including:
+                        &lt;/p>
+                        &lt;ul>
+                            &lt;li>All quiz results and scores&lt;/li>
+                            &lt;li>Your saved settings&lt;/li>
+                            &lt;li>Your username&lt;/li>
+                        &lt;/ul>
+                        &lt;p>Are you sure you want to continue?&lt;/p>
+                        &lt;div className="confirm-dialog-actions">
+                            &lt;button className="btn-cancel" onClick={cancelReject}>
+                                Cancel
+                            &lt;/button>
+                            &lt;button className="btn-confirm-reject" onClick={confirmReject}>
+                                Yes, Delete Everything
+                            &lt;/button>
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            )}
+        &lt;/div>
+    );
+};
+
+export default CookieSettings;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Button">Button</a></li><li><a href="global.html#CookieBanner">CookieBanner</a></li><li><a href="global.html#CookieSettings">CookieSettings</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#SettingsForm">SettingsForm</a></li><li><a href="global.html#SettingsFormView">SettingsFormView</a></li><li><a href="global.html#addResult">addResult</a></li><li><a href="global.html#clearUserResults">clearUserResults</a></li><li><a href="global.html#consentAwareStorage">consentAwareStorage</a></li><li><a href="global.html#setSettings">setSettings</a></li><li><a href="global.html#useQuiz">useQuiz</a></li><li><a href="global.html#useResultsStore">useResultsStore</a></li><li><a href="global.html#useSettingsStore">useSettingsStore</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Feb 10 2026 11:55:52 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

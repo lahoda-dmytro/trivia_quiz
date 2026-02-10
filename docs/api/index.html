@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Trivia Quiz</h1>
+<p>A simple yet engaging trivia quiz application built with React. This project was created as an educational exercise to demonstrate modern React patterns, state management, and GDPR-compliant data handling.</p>
+<h2>What is this?</h2>
+<p>This is a browser-based quiz game where you answer trivia questions and track your scores over time. The application runs entirely in your browser with no server-side processing. All your data stays on your device using LocalStorage, and you have full control over what gets saved through a GDPR-compliant cookie consent system.</p>
+<h2>Getting started</h2>
+<p>To run this project locally, you'll need Node.js installed on your machine. Clone the repository and install the dependencies:</p>
+<pre class="prettyprint source lang-bash"><code>npm install
+</code></pre>
+<p>Once everything is installed, start the development server:</p>
+<pre class="prettyprint source lang-bash"><code>npm start
+</code></pre>
+<p>The application will open in your browser at <a href="http://localhost:3000">http://localhost:3000</a>. You can now play the quiz, adjust settings, and see how everything works.</p>
+<h2>How it works</h2>
+<p>When you first open the application, you'll see a cookie consent banner. This isn't just for show - it actually controls whether your quiz settings and results get saved to LocalStorage. If you accept, your preferences and scores persist between sessions. If you decline, you can still use the app, but nothing gets saved.</p>
+<p>The quiz itself is straightforward. Enter your name, choose your difficulty level and number of questions, then start playing. Each question is timed, and you'll see your results at the end. All your past scores are saved (if you accepted cookies) and can be viewed in the results table.</p>
+<h3>Managing Your Privacy</h3>
+<p>You have full control over your data at any time. Click <strong>Cookie Settings</strong> in the header to:</p>
+<ul>
+<li>View your current consent status</li>
+<li>Change your cookie preferences</li>
+<li>Clear all stored data with one click</li>
+<li>Learn exactly what information is stored locally</li>
+</ul>
+<p>All data stays on your device - nothing is ever sent to external servers.</p>
+<h2>Documentation</h2>
+<p>This project includes comprehensive documentation in two formats. You can explore the component library interactively using Storybook:</p>
+<pre class="prettyprint source lang-bash"><code>npm run storybook
+</code></pre>
+<p>This opens Storybook at <a href="http://localhost:6006">http://localhost:6006</a> where you can see all the UI components with their different states and properties. The <a href="https://lahoda-dmytro.github.io/trivia_quiz/docs/storybook/index.html?path=/docs/forms-settingsform--docs">Button</a> and SettingsForm components are fully documented with interactive controls.</p>
+<p>For API documentation, generate the JSDoc files:</p>
+<pre class="prettyprint source lang-bash"><code>npm run docs
+</code></pre>
+<p>Then open <code>docs/index.html</code> in your browser to browse the <a href="https://lahoda-dmytro.github.io/trivia_quiz/docs/api/index.html">API documentation</a>. This covers all the hooks, stores, and utility functions used throughout the application.</p>
+<p>You can also visit the <a href="https://lahoda-dmytro.github.io/trivia_quiz/docs/">documentation hub</a> which provides links to both Storybook and JSDoc in one place.</p>
+<h2>Legal and privacy</h2>
+<p>This project is released under the <a href="./LICENSE">MIT License</a>, which means you're free to use, modify, and distribute it as you see fit. A full report of all third-party dependencies and their licenses is available in <a href="./LICENSE_REPORT.txt">LICENSE_REPORT.txt</a>.</p>
+<p>Privacy is taken seriously here. The <a href="./PRIVACY.md">Privacy Policy</a> explains exactly what data is collected (spoiler: not much) and how it's handled. The cookie consent system ensures compliance with GDPR regulations, giving users explicit control over data persistence.</p>
+<h2>Technical details</h2>
+<p>The application is built with React 19 and uses Zustand for state management. Form handling is done through React Hook Form, and routing uses React Router DOM. The entire codebase follows modern React patterns including custom hooks, container/presentational component separation, and proper state management practices.</p>
+<p>If you're interested in the architectural decisions and best practices used in this project, check out the <a href="src/BEST_PRACTICES.md">BEST_PRACTICES.md</a> file in the source directory.</p>
+<h2>Live demo</h2>
+<p>You can try the application live at <a href="https://lahoda-dmytro.github.io/trivia_quiz/">https://lahoda-dmytro.github.io/trivia_quiz/</a>. The documentation is also available online, so you don't need to build it locally if you just want to explore how things work.</p>
+<h2>Author</h2>
+<p>Created by Lahoda Dmytro in 2026 as a demonstration of modern React development practices and GDPR-compliant web applications.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Button">Button</a></li><li><a href="global.html#CookieBanner">CookieBanner</a></li><li><a href="global.html#CookieSettings">CookieSettings</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#SettingsForm">SettingsForm</a></li><li><a href="global.html#SettingsFormView">SettingsFormView</a></li><li><a href="global.html#addResult">addResult</a></li><li><a href="global.html#clearUserResults">clearUserResults</a></li><li><a href="global.html#consentAwareStorage">consentAwareStorage</a></li><li><a href="global.html#setSettings">setSettings</a></li><li><a href="global.html#useQuiz">useQuiz</a></li><li><a href="global.html#useResultsStore">useResultsStore</a></li><li><a href="global.html#useSettingsStore">useSettingsStore</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Feb 10 2026 11:55:52 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
