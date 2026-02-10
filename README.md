@@ -65,11 +65,49 @@ This project is released under the [MIT License](./LICENSE), which means you're 
 
 Privacy is taken seriously here. The [Privacy Policy](./PRIVACY.md) explains exactly what data is collected (spoiler: not much) and how it's handled. The cookie consent system ensures compliance with GDPR regulations, giving users explicit control over data persistence.
 
-## Technical details
+## Tech Stack
 
-The application is built with React 19 and uses Zustand for state management. Form handling is done through React Hook Form, and routing uses React Router DOM. The entire codebase follows modern React patterns including custom hooks, container/presentational component separation, and proper state management practices.
+The application is built with React 19 and uses Zustand for state management, React Router DOM for navigation, and React Hook Form for form handling. The UI is styled with CSS Modules, and GDPR compliance is handled through React Cookie Consent. Documentation is generated using Storybook for component library and JSDoc for API reference. The project is built with Create React App and deployed to GitHub Pages.
 
-If you're interested in the architectural decisions and best practices used in this project, check out the [BEST_PRACTICES.md](src/BEST_PRACTICES.md) file in the source directory.
+A complete list of all dependencies and their licenses is available in [LICENSE_REPORT.txt](./LICENSE_REPORT.txt).
+
+## Project Structure
+
+```
+trivia_quiz/
+├── public/                  # Static files
+│   ├── index.html          # Main HTML with GitHub Pages routing
+│   └── 404.html            # Redirect for client-side routing
+├── src/
+│   ├── components/         # React components
+│   │   ├── CookieBanner/   # GDPR cookie consent
+│   │   ├── CookieSettings/ # Cookie management page
+│   │   ├── Header/         # Navigation header
+│   │   ├── Quiz/           # Quiz game components
+│   │   ├── Settings/       # Quiz settings form
+│   │   └── UI/             # Reusable UI components
+│   ├── hooks/              # Custom React hooks
+│   │   ├── useQuiz.js      # Quiz game logic
+│   │   └── useTimer.js     # Question timer
+│   ├── pages/              # Page components
+│   │   ├── StartPage.jsx   # Quiz setup
+│   │   ├── GamePage.jsx    # Active quiz
+│   │   └── ResultsTablePage.jsx # Score history
+│   ├── store/              # Zustand state stores
+│   │   ├── useSettingsStore.js  # Quiz settings
+│   │   └── useResultsStore.js   # Score persistence
+│   ├── utils/              # Helper functions
+│   │   ├── localStorage.js # LocalStorage wrapper
+│   │   └── validation.js   # Form validation schemas
+│   └── App.jsx             # Main app component
+├── docs/                   # Generated JSDoc documentation
+├── storybook-static/       # Built Storybook
+├── LICENSE                 # MIT License
+├── LICENSE_REPORT.txt      # Dependencies licenses
+├── PRIVACY.md              # Privacy policy
+└── README.md               # This file
+```
+
 
 ## Live demo
 
