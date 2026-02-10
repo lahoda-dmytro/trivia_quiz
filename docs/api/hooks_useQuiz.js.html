@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: hooks/useQuiz.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: hooks/useQuiz.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from 'react';
+import { quizQuestions as allQuestions } from '../data/quizQuestions';
+import { useSettingsStore } from '../store/useSettingsStore';
+import { useResultsStore } from '../store/useResultsStore';
+
+
+const shuffleArray = (array) => {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+};
+
+/**
+ * Custom hook to manage the quiz state and logic.
+ * Handles question fetching, scoring, user answers, and quiz progression.
+ *
+ * @returns {Object} The quiz state and controller functions
+ * @property {string} status - Current status of the quiz ('ready', 'active', 'finished')
+ * @property {Object} currentQuestion - The currently displayed question object
+ * @property {number} totalQuestions - Total number of questions in the current session
+ * @property {number} score - Current calculated score (only available when finished)
+ * @property {number} currentIndex - Index of the current question
+ * @property {function(): void} startQuiz - Function to initialize and start the quiz based on settings
+ * @property {function(number): void} answerQuestion - Function to handle user answer submission
+ * @property {function(): void} restartQuiz - Function to reset the quiz to 'ready' state
+ */
+export const useQuiz = () => {
+    const { numQuestions, difficulty } = useSettingsStore();
+    const addResult = useResultsStore((state) => state.addResult);
+
+    const [status, setStatus] = useState('ready');
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [userAnswers, setUserAnswers] = useState([]);
+    const [questions, setQuestions] = useState([]);
+
+    const totalQuestions = questions.length;
+    const currentQuestion = questions[currentIndex];
+
+    const score = status === 'finished'
+        ? userAnswers.reduce((acc, answer, index) => {
+            if (answer === questions[index].correctAnswer) {
+                return acc + 1;
+            }
+            return acc;
+        }, 0)
+        : 0;
+
+    const startQuiz = () => {
+        let filteredQuestions;
+
+        switch (difficulty) {
+            case 'hard':
+                filteredQuestions = allQuestions;
+                break;
+            case 'medium':
+                filteredQuestions = allQuestions.filter(
+                    q => q.difficulty === 'easy' || q.difficulty === 'medium'
+                );
+                break;
+            case 'easy':
+            default:
+                filteredQuestions = allQuestions.filter(q => q.difficulty === 'easy');
+                break;
+        }
+
+        const sessionQuestions = shuffleArray(filteredQuestions).slice(0, Number(numQuestions));
+
+        setQuestions(sessionQuestions);
+        setCurrentIndex(0);
+        setUserAnswers([]);
+        setStatus('active');
+    };
+
+    const answerQuestion = (selectedIndex) => {
+        setUserAnswers((prevAnswers) => [...prevAnswers, selectedIndex]);
+        const isLastQuestion = currentIndex === totalQuestions - 1;
+        if (isLastQuestion) {
+            setStatus('finished');
+
+            const finalScore = userAnswers.reduce((acc, answer, index) => {
+                if (answer === questions[index].correctAnswer) return acc + 1;
+                return acc;
+            }, selectedIndex === questions[currentIndex].correctAnswer ? 1 : 0);
+
+
+            const username = localStorage.getItem('quizUsername') || 'noname';
+
+            const resultData = {
+                score: finalScore,
+                total: totalQuestions,
+                difficulty: difficulty,
+                date: new Date().toISOString(),
+            };
+
+            addResult(username, resultData);
+        } else {
+            setCurrentIndex((prevIndex) => prevIndex + 1);
+        }
+    };
+
+    const restartQuiz = () => {
+        setStatus('ready');
+    };
+
+    return {
+        status,
+        currentQuestion,
+        totalQuestions,
+        score,
+        currentIndex,
+        startQuiz,
+        answerQuestion,
+        restartQuiz,
+    };
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Button">Button</a></li><li><a href="global.html#CookieBanner">CookieBanner</a></li><li><a href="global.html#CookieSettings">CookieSettings</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#SettingsForm">SettingsForm</a></li><li><a href="global.html#SettingsFormView">SettingsFormView</a></li><li><a href="global.html#addResult">addResult</a></li><li><a href="global.html#clearUserResults">clearUserResults</a></li><li><a href="global.html#consentAwareStorage">consentAwareStorage</a></li><li><a href="global.html#setSettings">setSettings</a></li><li><a href="global.html#useQuiz">useQuiz</a></li><li><a href="global.html#useResultsStore">useResultsStore</a></li><li><a href="global.html#useSettingsStore">useSettingsStore</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Tue Feb 10 2026 11:44:29 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
