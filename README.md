@@ -116,4 +116,4 @@ You can try the application live at [https://lahoda-dmytro.github.io/trivia_quiz
 
 ## Author
 
-Created by Lahoda Dmytro in 2026 as a demonstration of modern React development practices and GDPR-compliant web applications.
+Created by Lahoda Dmytro in 2026.

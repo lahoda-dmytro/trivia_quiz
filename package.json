@@ -22,12 +22,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && node scripts/deploy-docs.js",
     "deploy": "gh-pages -d build",
     "docs": "jsdoc -c jsdoc.json",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy:docs": "node scripts/deploy-docs.js",
     "license-check": "license-checker --production --summary --out LICENSE_REPORT.txt",
     "license-check:detailed": "license-checker --production --out LICENSE_DETAILED.txt"
   },

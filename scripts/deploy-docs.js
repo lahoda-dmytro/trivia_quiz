@@ -22,29 +22,26 @@ const copyDir = (src, dest) => {
         fs.mkdirSync(dest, { recursive: true });
     }
     fs.cpSync(src, dest, { recursive: true });
-    console.log(`Copied ${src} → ${dest}`);
+    console.log(`Copied ${src} -> ${dest}`);
 };
 
-console.log('Starting Documentation Deployment...\n');
+console.log('Building documentation into build/docs...\n');
 
 runCommand('npm run build-storybook', 'Building Storybook');
 runCommand('npm run docs', 'Generating JSDoc');
 
-console.log('\nOrganizing documentation files...');
-const deployDir = path.join(__dirname, '..', 'docs-deploy');
+const buildDocsDir = path.join(__dirname, '..', 'build', 'docs');
 
-if (fs.existsSync(deployDir)) {
-    fs.rmSync(deployDir, { recursive: true, force: true });
+if (fs.existsSync(buildDocsDir)) {
+    fs.rmSync(buildDocsDir, { recursive: true, force: true });
 }
-fs.mkdirSync(deployDir, { recursive: true });
+fs.mkdirSync(buildDocsDir, { recursive: true });
 
 const storybookSrc = path.join(__dirname, '..', 'storybook-static');
-const storybookDest = path.join(deployDir, 'storybook');
-copyDir(storybookSrc, storybookDest);
+copyDir(storybookSrc, path.join(buildDocsDir, 'storybook'));
 
 const docsSrc = path.join(__dirname, '..', 'docs');
-const docsDest = path.join(deployDir, 'api');
-copyDir(docsSrc, docsDest);
+copyDir(docsSrc, path.join(buildDocsDir, 'api'));
 
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
@@ -117,14 +114,8 @@ const indexHtml = `<!DOCTYPE html>
 </body>
 </html>`;
 
-fs.writeFileSync(path.join(deployDir, 'index.html'), indexHtml);
+fs.writeFileSync(path.join(buildDocsDir, 'index.html'), indexHtml);
 console.log('Created documentation landing page');
 
-console.log('\nDeploying to GitHub Pages...');
-runCommand('npx gh-pages -d docs-deploy -e docs', 'Deploying documentation');
-
-console.log('\nCleaning up...');
-fs.rmSync(deployDir, { recursive: true, force: true });
-
-console.log('\nDocumentation deployment complete!');
-
+console.log('\nDocumentation built into build/docs successfully!');
+console.log('Run "npm run deploy" to publish everything together.');
