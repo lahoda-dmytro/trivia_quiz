@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { quizQuestions as allQuestions } from '../data/quizQuestions';
 import { useSettingsStore } from '../store/useSettingsStore';
 import { useResultsStore } from '../store/useResultsStore';
+import { getCookieConsentValue } from 'react-cookie-consent';
 
 
 const shuffleArray = (array) => {
@@ -87,7 +88,10 @@ export const useQuiz = () => {
             }, selectedIndex === questions[currentIndex].correctAnswer ? 1 : 0);
 
 
-            const username = localStorage.getItem('quizUsername') || 'noname';
+            const consent = getCookieConsentValue('quizCookieConsent');
+            const username = consent === 'true'
+                ? (localStorage.getItem('quizUsername') || 'noname')
+                : 'noname';
 
             const resultData = {
                 score: finalScore,

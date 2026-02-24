@@ -5,17 +5,21 @@ import SettingsForm from '../../components/Settings/SettingsForm';
 import { useNavigate } from 'react-router-dom';
 import StyledLink from '../../components/UI/StyledLink';
 import SimpleNotification from '../../components/SimpleNotification/SimpleNotification';
+import { getCookieConsentValue } from 'react-cookie-consent';
 
 const StartPage = ({ onStartQuiz }) => {
+    const hasConsent = () => getCookieConsentValue('quizCookieConsent') === 'true';
 
     const [username, setUsername] = useState(
-        () => localStorage.getItem('quizUsername') || ''
+        () => hasConsent() ? (localStorage.getItem('quizUsername') || '') : ''
     );
     const [notification, setNotification] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
-        localStorage.setItem('quizUsername', username);
+        if (hasConsent()) {
+            localStorage.setItem('quizUsername', username);
+        }
     }, [username]);
 
     const handleStart = () => {

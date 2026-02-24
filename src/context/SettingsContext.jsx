@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { getCookieConsentValue } from 'react-cookie-consent';
 
 const SettingsContext = createContext();
 
 const SettingsProvider = ({ children }) => {
+    const hasConsent = () => getCookieConsentValue('quizCookieConsent') === 'true';
 
     const [settings, setSettings] = useState({
         numQuestions: '5',
@@ -10,14 +12,18 @@ const SettingsProvider = ({ children }) => {
     });
 
     useEffect(() => {
-        const savedSettings = localStorage.getItem('quizSettings');
-        if (savedSettings) {
-            setSettings(JSON.parse(savedSettings));
+        if (hasConsent()) {
+            const savedSettings = localStorage.getItem('quizSettings');
+            if (savedSettings) {
+                setSettings(JSON.parse(savedSettings));
+            }
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('quizSettings', JSON.stringify(settings));
+        if (hasConsent()) {
+            localStorage.setItem('quizSettings', JSON.stringify(settings));
+        }
     }, [settings]);
 
     const value = {
