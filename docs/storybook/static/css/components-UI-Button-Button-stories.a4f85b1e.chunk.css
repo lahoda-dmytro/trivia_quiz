@@ -1,0 +1,30 @@
+.Button_button__tn\+GI {
+    padding: 12px;
+    font-size: 18px;
+    background-color: #f8f9fa;
+    border: 0 solid ;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    max-width: 300px;
+    width: 100%;
+}
+
+
+.Button_button__tn\+GI:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.Button_button__tn\+GI:active {
+    transform: scale(0.98);
+}
+
+.Button_button__tn\+GI:disabled {
+    background-color: #a0a0a0;
+    cursor: not-allowed;
+}
+
+/*# sourceMappingURL=components-UI-Button-Button-stories.a4f85b1e.chunk.css.map*/
