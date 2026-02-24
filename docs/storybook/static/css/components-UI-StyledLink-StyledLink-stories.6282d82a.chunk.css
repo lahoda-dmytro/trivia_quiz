@@ -1,0 +1,15 @@
+.StyledLink_link__Nt0DU {
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.StyledLink_link__Nt0DU:hover {
+    color: #6c6a6a;
+}
+
+/*# sourceMappingURL=components-UI-StyledLink-StyledLink-stories.6282d82a.chunk.css.map*/
